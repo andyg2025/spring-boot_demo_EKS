@@ -33,7 +33,7 @@ public class Controller {
     }
 
     @PutMapping("/{user_id}")
-    public User updatUserWithOrder(@PathVariable long user_id, @RequestBody int order_id){
+    public User updatUserWithOrder(@PathVariable long user_id, @RequestBody long order_id){
         return userService.updateUserWithOrder(user_id, order_id);
     }
 }

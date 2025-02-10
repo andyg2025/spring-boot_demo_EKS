@@ -26,7 +26,7 @@ public class UserService {
             .orElseThrow(()->new RuntimeException("User not found with id: " + id));
     }
 
-    public User updateUserWithOrder(long user_id, int order_id){
+    public User updateUserWithOrder(long user_id, long order_id){
         User user = userRepository.findById(user_id)
             .orElseThrow(()->new RuntimeException("User not found with id: " + user_id));
         user.getOrders().add(order_id);
