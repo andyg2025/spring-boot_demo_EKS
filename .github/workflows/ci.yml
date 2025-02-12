@@ -77,7 +77,7 @@ jobs:
     - name: Integration test with Docker Compose
       run: |
         docker compose -f docker/order-service/docker-compose.yml up -d
-        docker exec order-service-order-service_1 ./mvnw test
+        docker exec order-service-order-service-1 ./mvnw test
 
     # - name: Checkout ArgoCD Repo
     #   uses: actions/checkout@v4
