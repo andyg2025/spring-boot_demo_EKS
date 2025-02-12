@@ -42,24 +42,24 @@ spec:
         env:
           - name: SPRING_DATASOURCE_USERNAME
             valueFrom:
-              configMapRef:
-                name: db_config
+              configMapKeyRef:
+                name: db-config
                 key: username
 
           - name: SPRING_DATASOURCE_PASSWORD
             valueFrom:
-              configMapRef:
-                name: db_config
+              configMapKeyRef:
+                name: db-config
                 key: password
         
           - name: DB_ENDPOINT
             valueFrom:
-              configMapRef:
-                name: db_config
+              configMapKeyRef:
+                name: db-config
                 key: endpoint
                 
           - name: DB_NAME
             valueFrom:
-              configMapRef:
-                name: db_config
+              configMapKeyRef:
+                name: db-config
                 key: dbname

@@ -62,7 +62,7 @@ data "aws_secretsmanager_secret_version" "db_password_value" {
 # as spring boot is hard to decode at setup stage, using unencoded parameter with kubernetes_config_map
 resource "kubernetes_config_map" "db_config" {
   metadata {
-    name = "db_config"
+    name = "db-config"
     namespace = "default"
   }
 
