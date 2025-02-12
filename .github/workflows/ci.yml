@@ -37,12 +37,6 @@ jobs:
         java-version: 17
         cache: 'maven'
 
-    - name: Build ${{ matrix.service }}
-      working-directory: docker/${{ matrix.service }}
-      run: |
-        chmod +x mvnw
-        ./mvnw clean package -DskipTests=true
-
     - name: Test user-service
       working-directory: docker/user-serivce
       run: |
@@ -52,6 +46,12 @@ jobs:
       working-directory: docker/product-serivce
       run: |
         ./mvnw test
+
+    # - name: Build ${{ matrix.service }}
+    #   working-directory: docker/${{ matrix.service }}
+    #   run: |
+    #     chmod +x mvnw
+    #     ./mvnw clean package -DskipTests=true
 
     # - name: Get Git Version
     #   run: echo "VERSION=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
