@@ -24,8 +24,6 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
-      with:
-        repository: andy1994new/spring_boot_demo_EKS
 
     - name: Set up JDK 17
       uses: actions/setup-java@v3
