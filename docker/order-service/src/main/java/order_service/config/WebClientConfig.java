@@ -12,7 +12,7 @@ public class WebClientConfig {
     @Value("${USER_SERVICE_URL:http://localhost:8080/user}")
     private String userServiceUrl;
 
-    @Value("${PRODUCT_SERVICE_URL:http://localhost:8081/product}")
+    @Value("${PRODUCT_SERVICE_URL:http://localhost:8080/product}")
     private String productServiceUrl;
 
     @Bean
