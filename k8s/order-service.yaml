@@ -38,9 +38,6 @@ spec:
         - containerPort: 8082
 
         env:
-          - name: SPRING_DATASOURCE_URL
-            value: "jdbc:postgresql://${DB_ENDPOINT}:5432/${DB_NAME}"
-
           - name: SPRING_DATASOURCE_USERNAME
             valueFrom:
               secretKeyRef:
@@ -52,6 +49,18 @@ spec:
               secretKeyRef:
                 name: db-credentials
                 key: password
+        
+          - name: DB_ENDPOINT
+            valueFrom:
+              secretKeyRef:
+                name: db-credentials
+                key: endpoint
+                
+          - name: DB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: db-credentials
+                key: dbname
                 
           - name: USER_SERVICE_URL
             value: http://user-service:8080/user
