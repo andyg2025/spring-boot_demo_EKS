@@ -35,27 +35,45 @@ data "aws_secretsmanager_secret_version" "db_password_value" {
   secret_id = data.aws_secretsmanager_secret.db_password.id
 }
 
-# Kubernetes secret to store DB credentials
-resource "kubernetes_secret" "db_credentials" {
+# # Kubernetes secret to store DB credentials
+# resource "kubernetes_secret" "db_credentials" {
+#   metadata {
+#     name = "db-credentials"
+#     namespace = "default"
+#   }
+
+#   data = {
+#     # Base64 encode the username from the RDS module
+#     username = base64encode(module.db.db_instance_username)
+
+#     # Base64 encode the database endpoint from the RDS module
+#     endpoint = base64encode(module.db.db_instance_endpoint)
+
+#     # Fetch and base64 encode the password stored in Secrets Manager
+#     password = base64encode(
+#       jsondecode(data.aws_secretsmanager_secret_version.db_password_value.secret_string).password
+#     )
+
+#     # Base64 encode the database name
+#     dbname = base64encode(local.db_name)
+#   }
+# }
+
+# as spring boot is hard to decode at setup stage, using unencoded parameter with kubernetes_config_map
+resource "kubernetes_config_map" "db_config" {
   metadata {
-    name = "db-credentials"
+    name = "db_config"
     namespace = "default"
   }
 
   data = {
-    # Base64 encode the username from the RDS module
-    username = base64encode(module.db.db_instance_username)
+    username = module.db.db_instance_username
 
-    # Base64 encode the database endpoint from the RDS module
-    endpoint = base64encode(module.db.db_instance_endpoint)
+    endpoint = module.db.db_instance_endpoint
 
-    # Fetch and base64 encode the password stored in Secrets Manager
-    password = base64encode(
-      jsondecode(data.aws_secretsmanager_secret_version.db_password_value.secret_string).password
-    )
+    password = jsondecode(data.aws_secretsmanager_secret_version.db_password_value.secret_string).password
 
-    # Base64 encode the database name
-    dbname = base64encode(local.db_name)
+    dbname = local.db_name
   }
 }
 
