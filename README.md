@@ -104,6 +104,12 @@ From here, you can monitor the deployment status of your three services.
 - **AWS Load Balancer Controller** manages incoming traffic.
 
 ## Cleanup
+Delete ArgoCD-managed resources from your EKS cluster:
+```sh
+cd terraform
+kubectl delete -f argoApp.yaml
+```
+
 To delete all resources created by Terraform:
 ```sh
 cd terraform

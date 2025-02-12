@@ -21,6 +21,6 @@ terraform apply -auto-approve
 echo "✅ Deployment completed successfully!"
 
 echo "🔹 Applying ArgoCD application configuration..."
-kubectl apply -f ../argoApp.yaml
+kubectl apply -f ../terraform/argoApp.yaml
 
 echo "🎉 Setup complete!"
