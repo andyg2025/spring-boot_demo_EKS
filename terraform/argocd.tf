@@ -14,10 +14,3 @@ resource "helm_release" "argo" {
 
     values = [file("values/argocd.yaml")]
 }
-
-# resource "kubernetes_manifest" "argo_application" {
-#   manifest = yamldecode(templatefile("argoApp.yaml", {
-#     eks_api_server_url = data.aws_eks_cluster.eks.endpoint
-#   }))
-#   depends_on = [module.eks, helm_release.argo]
-# }
